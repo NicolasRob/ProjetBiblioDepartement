@@ -16,7 +16,5 @@
     </head>
     <body>
         <h1 class="text-danger">Page de login!</h1>
-        <p class="text-danger">TEST</p>
-        <p class="text-center">CENTER</p>
     </body>
 </html>
