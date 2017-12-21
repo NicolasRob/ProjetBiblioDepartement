@@ -21,5 +21,10 @@
     
     <bean id="userControleur" class="com.nrobillard.controleurs.UserControleur">
     </bean>
+    
+    <bean id="bookControleur" class="com.nrobillard.controleurs.BookControleur">
+        <property name="bookService" ref="bookService" />
+    </bean>
+
 
 </beans>
