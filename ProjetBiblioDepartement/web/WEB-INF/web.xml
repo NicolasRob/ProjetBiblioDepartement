@@ -24,17 +24,30 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <servlet>
-        <servlet-name>userControleur</servlet-name>
+        <servlet-name>userDispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+            <param-value>/WEB-INF/userDispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>userControleur</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>userDispatcher</servlet-name>
+        <url-pattern>/user/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>bookDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/bookDispatcher-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bookDispatcher</servlet-name>
+        <url-pattern>/book/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -42,6 +55,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>redirect.jsp</welcome-file>
+        <welcome-file>book/catalogue</welcome-file>
     </welcome-file-list>
+    <error-page>
+      <error-code>404</error-code>
+      <location>/WEB-INF/jsp/erreur404.jsp</location>
+    </error-page>
 </web-app>

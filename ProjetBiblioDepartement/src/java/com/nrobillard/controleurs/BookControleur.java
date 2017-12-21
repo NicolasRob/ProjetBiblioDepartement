@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Vengor
  */
 @Controller
-@RequestMapping("book")
 public class BookControleur
 {
     private BookService bookService;

@@ -11,6 +11,7 @@
     <body>
         <h1>Ajout d'un livre</h1>
         <hr>
+        <a href="catalogue">Retourner au catalogue</a>
         <h5 class="text-danger">${message}</h5>
         <form action="ajout" method="POST">
             <div class="form-group">

@@ -37,18 +37,4 @@
     <bean id="connexion" class="com.nrobillard.util.Connexion">
     </bean>
     
-    <bean id="userDAO" class="com.nrobillard.modeles.dao.UserDAO">
-        <property name="connexion" ref="connexion" />
-        <property name="emf" ref="entityManager" />
-    </bean>
-    
-    <bean id="bookDAO" class="com.nrobillard.modeles.dao.BookDAO">
-        <property name="connexion" ref="connexion" />
-        <property name="emf" ref="entityManager" />
-    </bean>
-    
-    <bean id="bookService" class="com.nrobillard.service.BookService">
-        <property name="dao" ref="bookDAO" />
-    </bean>
-    
 </beans>

@@ -14,17 +14,13 @@
     <mvc:annotation-driven />
     
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-
-    <!--
-    The index controller.
-    -->
+    
+    <bean id="userDAO" class="com.nrobillard.modeles.dao.UserDAO">
+        <property name="connexion" ref="connexion" />
+        <property name="emf" ref="entityManager" />
+    </bean>
     
     <bean id="userControleur" class="com.nrobillard.controleurs.UserControleur">
     </bean>
-    
-    <bean id="bookControleur" class="com.nrobillard.controleurs.BookControleur">
-        <property name="bookService" ref="bookService" />
-    </bean>
-
 
 </beans>

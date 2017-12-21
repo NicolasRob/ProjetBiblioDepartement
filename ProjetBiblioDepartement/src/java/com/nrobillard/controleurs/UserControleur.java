@@ -28,7 +28,7 @@ public class UserControleur
         this.converterService = converterService;
     }*/
     //@ResponseBody
-    @RequestMapping("/")
+    @RequestMapping("login")
     public String login(ModelMap model) {
         //List<String> liste = this.converterService.getMonnaiesListe();
         //model.addAttribute("bienvenue", "Bienvenue au service de conversion de monnaies");
