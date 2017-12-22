@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nrobillard.modeles.dao;
 
 import com.nrobillard.modeles.classes.Book;
@@ -10,10 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Query;
 
-/**
- *
- * @author Vengor
- */
 public class BookDAO extends DAO<Book>
 {
     
@@ -83,7 +74,7 @@ public class BookDAO extends DAO<Book>
         }
         catch (Exception exp)
         {
-            System.out.println("Erreur :" + exp.getMessage());
+            System.out.println("EXCEPTION :" + exp.getMessage());
             return null;
         }
     }
@@ -117,7 +108,7 @@ public class BookDAO extends DAO<Book>
         }
         catch (Exception exp)
         {
-            System.out.println("Erreur :" + exp.getMessage());
+            System.out.println("EXCEPTION :" + exp.getMessage());
             return resultat;
         }
     }

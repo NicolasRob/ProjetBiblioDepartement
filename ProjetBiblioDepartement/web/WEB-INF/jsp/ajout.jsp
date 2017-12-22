@@ -10,9 +10,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ajout d'un livre</h1>
-        <hr>
-        <a href="catalogue">Retourner au catalogue</a>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Biblioth&egrave;que de d&eacute;partement</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="catalogue">Catalogue</a></li>
+              <li class="active"><a href="#">Ajouter un livre</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span>Déconnexion</a></li>
+            </ul>
+          </div>
+        </nav>
         <h5 class="text-danger">${message}</h5>
         <form action="ajout" method="POST">
             <div class="form-group">

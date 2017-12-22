@@ -54,9 +54,13 @@
             30
         </session-timeout>
     </session-config>
+    <!-- La page d'accueil est le catalogue, mais l'interceptor amènera l'utilisateur -->
+    <!-- vers la page de login si celui-ci n'est pas connecté -->
     <welcome-file-list>
         <welcome-file>book/catalogue</welcome-file>
     </welcome-file-list>
+    <!-- Les urls invalides amènent vers une page d'erreur personnalisé avec un lien -->
+    <!-- qui ramène vers l'accueil du site (login ou catalogue) -->
     <error-page>
       <error-code>404</error-code>
       <location>/WEB-INF/jsp/erreur404.jsp</location>

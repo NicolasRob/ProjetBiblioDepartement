@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nrobillard.controleurs;
 
 import com.nrobillard.service.BookService;
@@ -14,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- *
- * @author Vengor
- */
 @Controller
 public class BookControleur
 {
@@ -55,6 +46,7 @@ public class BookControleur
             if (resultat == 0)
             {
                 model.addAttribute("message", "Le livre a ete ajoute");
+                //Redirection pour éviter les double submit
                 return new ModelAndView("redirect:/book/catalogue", model);
             }
             else if (resultat == 1)

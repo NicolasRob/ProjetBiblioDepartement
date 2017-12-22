@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
@@ -11,21 +10,10 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     
-    <!--bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/jdbc.properties" />
-
-<bean id="dataSource"
-    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-    p:driverClassName="${jdbc.driverClassName}"
-    p:url="${jdbc.url}"
-    p:username="${jdbc.username}"
-    p:password="${jdbc.password}" /-->
     <mvc:annotation-driven />
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     
-    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
       <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -36,7 +24,6 @@
         <property name="persistenceUnitName" value="ProjetBiblioDepartementPU" />
     </bean>
     
-    <bean id="connexion" class="com.nrobillard.util.Connexion">
-    </bean>
+    <bean id="connexion" class="com.nrobillard.util.Connexion"></bean>
     
 </beans>

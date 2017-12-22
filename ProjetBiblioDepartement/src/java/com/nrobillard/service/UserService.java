@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nrobillard.service;
 
 import com.nrobillard.modeles.classes.User;
@@ -18,7 +13,7 @@ public class UserService {
         this.dao = dao;
     }
     
-    //retourne un true pour réussite et un false pour un Ã©chec
+    //retourne un true pour réussite et un false pour un échec
     public boolean inscription(User user){
         //vérifie si le user existe
         if(dao.read(user.getCourriel()) == null){

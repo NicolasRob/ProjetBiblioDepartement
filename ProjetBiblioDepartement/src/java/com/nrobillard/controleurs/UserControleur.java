@@ -43,7 +43,8 @@ public class UserControleur
     @RequestMapping(method = RequestMethod.POST, value="login", params={"courriel","password"})
     public ModelAndView login(@RequestParam("courriel") String courriel, @RequestParam("password") 
             String password,ModelMap model, HttpSession session){
-        if((courriel.isEmpty() || courriel.equalsIgnoreCase("") || password.isEmpty() || password.equalsIgnoreCase("")))
+        if( courriel == null || "".equals(courriel.trim()) 
+            || password == null || "".equals(password.trim()))
             model.addAttribute("message","Tout les champs doivent être remplis");
         }
         else
@@ -65,10 +66,7 @@ public class UserControleur
                   break;
           }
         }
-        if (session.getAttribute("User") != null)
-            return new ModelAndView("redirect:/book/catalogue");
-        else
-            return new ModelAndView("login", model);
+        return new ModelAndView("login", model);
     }
     
     @RequestMapping(method = RequestMethod.GET, value="inscription")
@@ -84,16 +82,15 @@ public class UserControleur
             return "login";
         }
         
-        if(password.isEmpty() || password.equalsIgnoreCase("")){
-            model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
-            return "login";
-        }
+        if( courriel == null || "".equals(courriel.trim()) 
+            || password == null || "".equals(password.trim()))
+            model.addAttribute("message","Tout les champs doivent être remplis");
         
         User user = new User(courriel,password);
         boolean resultat = service.inscription(user);
         
         if(resultat){
-            model.addAttribute("message", "inscription reussie");
+            model.addAttribute("message", "Votre compte a été créé");
             return "login";
         }
         else{
@@ -107,48 +104,4 @@ public class UserControleur
         session.invalidate();
         return "login";
     }
-    /*//@ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value="/", params={"nom"})
-    public String convert(@RequestParam("nom") String nom, ModelMap model) {
-        model.addAttribute("message", "1 "+nom+" vaut "+converterService.getTaux(nom)+" $CAN");
-        return "convert";
-    }
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String add(ModelMap model) throws IOException
-    {
-        model.put("form", new Form());    
-        return "add";
-    }
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public View create(HttpSession session, Form form, ModelMap model) throws IOException
-    {
-        Monnaie monnaie = new Monnaie();
-        monnaie.setNom(form.getNom());
-        monnaie.setValeur(form.getValeur());
-        this.converterService.addMonnaie(monnaie);
-
-        return new RedirectView("/", true, false);
-    }
-    
-    public static class Form {
-        private String nom;
-        private double valeur;
-
-        public String getNom() {
-            return nom;
-        }
-
-        public void setNom(String nom) {
-            this.nom = nom;
-        }
-
-        public double getValeur() {
-            return valeur;
-        }
-
-        public void setValeur(double valeur) {
-            this.valeur = valeur;
-        }       
-    }*/
-    
 }
