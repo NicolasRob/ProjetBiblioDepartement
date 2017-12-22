@@ -48,6 +48,11 @@ public class User implements Serializable
         this.courriel = courriel;
     }
 
+    public User(String courriel, String password) {
+        this.courriel = courriel;
+        this.mdp = password;
+    }
+
     public String getCourriel()
     {
         return courriel;
