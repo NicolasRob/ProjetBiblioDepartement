@@ -43,7 +43,7 @@ public class UserControleur
     @RequestMapping(method = RequestMethod.POST, value="login", params={"courriel","password"})
     public ModelAndView login(@RequestParam("courriel") String courriel, @RequestParam("password") 
             String password,ModelMap model, HttpSession session){
-        if((courriel.isEmpty() || courriel.equalsIgnoreCase("") || password.isEmpty() || password.equalsIgnoreCase(""))){
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase("") || password.isEmpty() || password.equalsIgnoreCase("")))
             model.addAttribute("message","Tout les champs doivent être remplis");
         else
         {
