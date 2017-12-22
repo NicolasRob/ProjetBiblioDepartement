@@ -44,11 +44,34 @@ public class UserControleur
         //model.addAttribute("monnaies", liste);
         return "login";
     }
+    
+    //retourne 0 pour un login rÃ©ussi, 1 pour une erreur de compte
+    // et 2 pur un mauvais password
     @RequestMapping(method = RequestMethod.GET, value="login", params={"courriel","password"})
-    public String login(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model){
-        //User user = new User(courriel,password);
-        //service.login(user);
-        return "index";
+    public String login(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model, HttpSession session){
+        User user = new User(courriel,password);
+        int resultat = service.login(user);
+        switch (resultat){
+            case 0:
+                session.setAttribute("User",user );
+                break;
+                
+            case 1:
+                model.addAttribute("message","votre compte nexiste pas");
+                break;
+                
+            case 2:
+                model.addAttribute("message","vous avez entre un mauvai password");
+                break;
+        }
+        //la requete va etre intercepter par l'intercepteur et forward au catalogue
+        return "login";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "logout")
+    public String logout(ModelMap model, HttpSession session){
+        session.invalidate();
+        return "login";
     }
     /*//@ResponseBody
     @RequestMapping(method = RequestMethod.GET, value="/", params={"nom"})
