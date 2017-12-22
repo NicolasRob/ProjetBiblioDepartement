@@ -16,6 +16,6 @@
         <h1>Erreur 404</h1>
         <hr>
         <p>La page que vous tentez d'acc&eacute;der n'existe pas</p>
-        <a href="book/catalogue">Retourner &agrave; l'accueil</a>
+        <a href="${pageContext.request.contextPath}/book/catalogue">Retourner &agrave; l'accueil</a>
     </body>
 </html>

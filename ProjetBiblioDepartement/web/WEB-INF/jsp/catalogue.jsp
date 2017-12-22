@@ -1,9 +1,3 @@
-<%-- 
-    Document   : catalogue
-    Created on : 11-Dec-2017, 1:22:15 PM
-    Author     : Vengor
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

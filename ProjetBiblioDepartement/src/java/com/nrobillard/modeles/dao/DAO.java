@@ -16,7 +16,7 @@ public abstract class DAO<T>
 
     public DAO() 
     {
-        //this.emf = Persistence.createEntityManagerFactory("ProjetBiblioDepartementPU");
+       
     }
 
     public void setConnexion(Connexion connexion)
