@@ -13,10 +13,11 @@
         <h1>Connexion</h1>
         <hr>
         <h5 class="text-danger">${message}</h5>
+        <h5 class="text-success">${param.creation}</h5>
         <form action="login" method="POST">
             <div class="form-group">
                 <label for="courriel">Courriel: </label>
-                <input type="text" name="courriel" id="courriel" class="form-control col-sm-10" />
+                <input type="text" name="courriel" id="courriel" class="form-control col-sm-10" value="${courriel}" />
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe: </label>

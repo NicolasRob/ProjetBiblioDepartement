@@ -16,7 +16,7 @@
         <form action="inscription" method="POST">
             <div class="form-group">
                 <label for="courriel">Courriel: </label>
-                <input type="text" name="courriel" id="courriel" class="form-control col-sm-10" />
+                <input type="text" name="courriel" id="courriel" class="form-control col-sm-10" value="${courriel}"/>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe: </label>
@@ -24,6 +24,6 @@
             </div>
             <button type="submit" class="btn btn-default">S'inscrire</button>
         </form>
-        <a href="login">Ce connecté</a>
+        <a href="login">Retourner à la page de connection</a>
     </body>
 </html>

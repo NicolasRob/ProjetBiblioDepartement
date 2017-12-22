@@ -13,18 +13,17 @@ public class UserService {
         this.dao = dao;
     }
     
-    //retourne un true pour réussite et un false pour un échec
+    //retourne true pour réussite et un false pour un échec
     public boolean inscription(User user){
         //vérifie si le user existe
         if(dao.read(user.getCourriel()) == null){
-            dao.create(user);
-            return true; 
+            return dao.create(user);
         }
         return false;
     }
     
-    //retourne 0 pour un login rÃ©ussi, 1 pour une erreur de compte
-    // et 2 pur un mauvais password
+    //retourne 0 pour un login réussi, 1 pour une erreur de compte
+    // et 2 pur un mauvais mot de passe
     public int login(User user){
         User user_from_database = dao.read(user.getCourriel());
         if(user_from_database != null){

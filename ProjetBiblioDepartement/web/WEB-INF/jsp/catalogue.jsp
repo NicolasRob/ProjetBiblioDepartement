@@ -45,20 +45,21 @@
             <tbody>
                 <c:forEach items="${livres}" var="unLivre">
                     <tr>
-                        <td>${unLivre.getIsbn()}</td>
-                        <td>${unLivre.getAuthor()}</td>
-                        <td>${unLivre.getTitle()}</td>
-                        <td>${unLivre.getNbPages()}</td>
-                        <td>${unLivre.getEdition()}</td>
-                        <td>${unLivre.getYear()}</td>
-                        <td>${unLivre.getLanguage()}</td>
-                        <td>${unLivre.getDescription()}</td>
-                        <td>${unLivre.getKeywords()}</td>
+                        <td>${unLivre.isbn}</td>
+                        <td>${unLivre.author}</td>
+                        <td>${unLivre.title}</td>
+                        <td>${unLivre.nbPages}</td>
+                        <td>${unLivre.edition}</td>
+                        <td>${unLivre.year}</td>
+                        <td>${unLivre.language}</td>
+                        <td>${unLivre.description}</td>
+                        <td>${unLivre.keywords}</td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
         <script>
+            <!-- Utilisation d'un composant JS Datatables pour offrir pagination, trie, recherche -->
             $(document).ready(function() {
                 $('#catalogue').DataTable({
                     "language": {
