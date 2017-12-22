@@ -49,6 +49,15 @@ public class UserControleur
     // et 2 pur un mauvais password
     @RequestMapping(method = RequestMethod.GET, value="login", params={"courriel","password"})
     public String login(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model, HttpSession session){
+        
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
+            model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+        }
+        
+        if(password.isEmpty() || password.equalsIgnoreCase("")){
+            model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
+        }
+        
         User user = new User(courriel,password);
         int resultat = service.login(user);
         switch (resultat){
@@ -65,6 +74,30 @@ public class UserControleur
                 break;
         }
         //la requete va etre intercepter par l'intercepteur et forward au catalogue
+        return "login";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value="inscription", params={"courriel","password"})
+    public String inscription(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model){
+        
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
+            model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+        }
+        
+        if(password.isEmpty() || password.equalsIgnoreCase("")){
+            model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
+        }
+        
+        User user = new User(courriel,password);
+        boolean resultat = service.inscription(user);
+        
+        if(resultat){
+            model.addAttribute("message", "inscription reussie");
+        }
+        else{
+            model.addAttribute("message","inscription a echouer");
+        }
+        
         return "login";
     }
     
@@ -116,4 +149,5 @@ public class UserControleur
             this.valeur = valeur;
         }       
     }*/
+    
 }

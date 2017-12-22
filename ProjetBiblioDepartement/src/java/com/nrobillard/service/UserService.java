@@ -20,9 +20,10 @@ public class UserService {
     
     //retourne un true pour réussite et un false pour un Ã©chec
     public boolean inscription(User user){
+        //vérifie si le user existe
         if(dao.read(user.getCourriel()) == null){
             dao.create(user);
-            return true;     
+            return true; 
         }
         return false;
     }
