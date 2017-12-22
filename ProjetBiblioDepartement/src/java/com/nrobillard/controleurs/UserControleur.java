@@ -43,26 +43,57 @@ public class UserControleur
     @RequestMapping(method = RequestMethod.POST, value="login", params={"courriel","password"})
     public ModelAndView login(@RequestParam("courriel") String courriel, @RequestParam("password") 
             String password,ModelMap model, HttpSession session){
-        User user = new User(courriel,password);
-        int resultat = service.login(user);
-        switch (resultat){
-            case 0:
-                session.setAttribute("User",user);
-                break;
-                
-            case 1:
-                model.addAttribute("message","Le compte entré n'existe pas.");
-                break;
-                
-            case 2:
-                model.addAttribute("message","Le mot de passe entré est incorrect.");
-                model.addAttribute("courriel", courriel);
-                break;
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase("") || password.isEmpty() || password.equalsIgnoreCase(""))){
+            model.addAttribute("message","Tout les champs doivent être remplis");
+        else
+        {
+          User user = new User(courriel,password);
+          int resultat = service.login(user);
+          switch (resultat){
+              case 0:
+                  session.setAttribute("User",user);
+                  break;
+
+              case 1:
+                  model.addAttribute("message","Le compte entré n'existe pas.");
+                  break;
+
+              case 2:
+                  model.addAttribute("message","Le mot de passe entré est incorrect.");
+                  model.addAttribute("courriel", courriel);
+                  break;
+          }
         }
         if (session.getAttribute("User") != null)
             return new ModelAndView("redirect:/book/catalogue");
         else
             return new ModelAndView("login", model);
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value="inscription", params={"courriel","password"})
+    public String inscription(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model){
+        
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
+            model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+            return "login";
+        }
+        
+        if(password.isEmpty() || password.equalsIgnoreCase("")){
+            model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
+            return "login";
+        }
+        
+        User user = new User(courriel,password);
+        boolean resultat = service.inscription(user);
+        
+        if(resultat){
+            model.addAttribute("message", "inscription reussie");
+        }
+        else{
+            model.addAttribute("message","inscription a echouer");
+        }
+        
+        return "login";
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "logout")
@@ -113,4 +144,5 @@ public class UserControleur
             this.valeur = valeur;
         }       
     }*/
+    
 }
