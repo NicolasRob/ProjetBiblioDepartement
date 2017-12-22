@@ -21,6 +21,11 @@
     </bean>
     
     <bean id="userControleur" class="com.nrobillard.controleurs.UserControleur">
+        <property name="UserService" ref="service" />
+    </bean>
+    
+    <bean id="UserService" class="com.nrobillard.modeles.service">
+        <property name="dao" ref="userDAO" />
     </bean>
 
 </beans>
