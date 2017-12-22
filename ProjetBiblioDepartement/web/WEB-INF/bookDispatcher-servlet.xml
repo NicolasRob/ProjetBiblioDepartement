@@ -27,5 +27,9 @@
     <bean id="bookControleur" class="com.nrobillard.controleurs.BookControleur">
         <property name="bookService" ref="bookService" />
     </bean>
+    
+    <mvc:interceptors>
+        <bean class="com.nrobillard.interceptor.LoginInterceptor" />
+    </mvc:interceptors>
 
 </beans>
