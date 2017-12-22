@@ -19,10 +19,20 @@
         <title>Catalogue</title>
     </head>
     <body>
-        <h1>Catalogue</h1>
-        <hr>
-        <h3><a href="${pageContext.request.contextPath}/book/ajout">Ajouter un livre</a></h3>
-        <br>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Biblioth&egrave;que de d&eacute;partement</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Catalogue</a></li>
+              <li><a href="${pageContext.request.contextPath}/book/ajout">Ajouter un livre</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span>Déconnexion</a></li>
+            </ul>
+          </div>
+        </nav>
         <h5 class="text-success">${param.message}</h5>
         <table id="catalogue" class="table table-striped">
             <thead>
