@@ -5,9 +5,11 @@
  */
 package com.nrobillard.controleurs;
 
+import com.nrobillard.modeles.classes.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import com.nrobillard.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +25,30 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class UserControleur
 {
+    private UserService service;
+
+    public void setService(UserService service) {
+        this.service = service;
+    }
+    
+    
     /*private ConverterService converterService;
     public void setConverterService(ConverterService converterService) {
         this.converterService = converterService;
     }*/
     //@ResponseBody
-    @RequestMapping("login")
-    public String login(ModelMap model) {
+    @RequestMapping("/")
+    public String home(ModelMap model) {
         //List<String> liste = this.converterService.getMonnaiesListe();
         //model.addAttribute("bienvenue", "Bienvenue au service de conversion de monnaies");
         //model.addAttribute("monnaies", liste);
         return "login";
+    }
+    @RequestMapping(method = RequestMethod.GET, value="login", params={"courriel","password"})
+    public String login(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model){
+        //User user = new User(courriel,password);
+        //service.login(user);
+        return "index";
     }
     /*//@ResponseBody
     @RequestMapping(method = RequestMethod.GET, value="/", params={"nom"})
