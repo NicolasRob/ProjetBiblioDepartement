@@ -46,6 +46,7 @@ public class UserControleur
         if( courriel == null || "".equals(courriel.trim()) 
             || password == null || "".equals(password.trim()))
             model.addAttribute("message","Tout les champs doivent être remplis");
+        }
         else
         {
           User user = new User(courriel,password);
@@ -68,9 +69,18 @@ public class UserControleur
         return new ModelAndView("login", model);
     }
     
-    @RequestMapping(method = RequestMethod.GET, value="inscription", params={"courriel","password"})
-    public String inscription(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model)
-    {
+    @RequestMapping(method = RequestMethod.GET, value="inscription")
+    public String inscription(){
+        return "inscription";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value="inscription", params={"courriel","password"})
+    public String inscription(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model){
+        
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
+            model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+            return "login";
+        }
         
         if( courriel == null || "".equals(courriel.trim()) 
             || password == null || "".equals(password.trim()))
@@ -81,12 +91,12 @@ public class UserControleur
         
         if(resultat){
             model.addAttribute("message", "Votre compte a été créé");
+            return "login";
         }
         else{
             model.addAttribute("message","inscription a echouer");
+            return "inscription";
         }
-        
-        return "login";
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "logout")
