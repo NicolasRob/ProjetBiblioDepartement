@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -31,52 +32,42 @@ public class UserControleur
         this.service = service;
     }
     
-    
-    /*private ConverterService converterService;
-    public void setConverterService(ConverterService converterService) {
-        this.converterService = converterService;
-    }*/
-    //@ResponseBody
-    @RequestMapping("/")
-    public String home(ModelMap model) {
-        //List<String> liste = this.converterService.getMonnaiesListe();
-        //model.addAttribute("bienvenue", "Bienvenue au service de conversion de monnaies");
-        //model.addAttribute("monnaies", liste);
+    @RequestMapping(method = RequestMethod.GET, value="login")
+    public String login()
+    {
         return "login";
     }
     
-    //retourne 0 pour un login rÃ©ussi, 1 pour une erreur de compte
-    // et 2 pur un mauvais password
-    @RequestMapping(method = RequestMethod.GET, value="login", params={"courriel","password"})
-    public String login(@RequestParam("courriel") String courriel, @RequestParam("password") String password,ModelMap model, HttpSession session){
-        
-        if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
-            model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
-            return "login";
+    //retourne 0 pour un login réussi, 1 pour une erreur de compte
+    // et 2 pour un mot de passe incorrect
+    @RequestMapping(method = RequestMethod.POST, value="login", params={"courriel","password"})
+    public ModelAndView login(@RequestParam("courriel") String courriel, @RequestParam("password") 
+            String password,ModelMap model, HttpSession session){
+        if((courriel.isEmpty() || courriel.equalsIgnoreCase("") || password.isEmpty() || password.equalsIgnoreCase(""))){
+            model.addAttribute("message","Tout les champs doivent être remplis");
+        else
+        {
+          User user = new User(courriel,password);
+          int resultat = service.login(user);
+          switch (resultat){
+              case 0:
+                  session.setAttribute("User",user);
+                  break;
+
+              case 1:
+                  model.addAttribute("message","Le compte entré n'existe pas.");
+                  break;
+
+              case 2:
+                  model.addAttribute("message","Le mot de passe entré est incorrect.");
+                  model.addAttribute("courriel", courriel);
+                  break;
+          }
         }
-        
-        if(password.isEmpty() || password.equalsIgnoreCase("")){
-            model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
-            return "login";
-        }
-        
-        User user = new User(courriel,password);
-        int resultat = service.login(user);
-        switch (resultat){
-            case 0:
-                session.setAttribute("User",user );
-                break;
-                
-            case 1:
-                model.addAttribute("message","votre compte nexiste pas");
-                break;
-                
-            case 2:
-                model.addAttribute("message","vous avez entre un mauvai password");
-                break;
-        }
-        //la requete va etre intercepter par l'intercepteur et forward au catalogue
-        return "login";
+        if (session.getAttribute("User") != null)
+            return new ModelAndView("redirect:/book/catalogue");
+        else
+            return new ModelAndView("login", model);
     }
     
     @RequestMapping(method = RequestMethod.GET, value="inscription", params={"courriel","password"})

@@ -20,11 +20,20 @@
         <property name="emf" ref="entityManager" />
     </bean>
     
-    <bean id="UserService" class="com.nrobillard.modeles.service">
+    <bean id="userService" class="com.nrobillard.service.UserService">
         <property name="dao" ref="userDAO" />
     </bean>
     
     <bean id="userControleur" class="com.nrobillard.controleurs.UserControleur">
-        <property name="UserService" ref="service" />
+        <property name="service" ref="userService" />
     </bean>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/login" />
+            <mvc:mapping path="/inscription" />
+            <bean class="com.nrobillard.interceptor.NotConnectedInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
