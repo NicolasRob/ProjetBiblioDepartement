@@ -37,9 +37,4 @@
     <bean id="connexion" class="com.nrobillard.util.Connexion">
     </bean>
     
-    <bean id="userDAO" class="com.nrobillard.modeles.dao.UserDAO">
-        <property name="connexion" ref="connexion" />
-        <property name="emf" ref="entityManager" />
-    </bean>
-    
 </beans>
