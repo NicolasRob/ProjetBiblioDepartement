@@ -52,10 +52,12 @@ public class UserControleur
         
         if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
             model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+            return "login";
         }
         
         if(password.isEmpty() || password.equalsIgnoreCase("")){
             model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
+            return "login";
         }
         
         User user = new User(courriel,password);
@@ -82,10 +84,12 @@ public class UserControleur
         
         if((courriel.isEmpty() || courriel.equalsIgnoreCase(""))){
             model.addAttribute("message","votre courriel doit etre au moin 1 caractere");
+            return "login";
         }
         
         if(password.isEmpty() || password.equalsIgnoreCase("")){
             model.addAttribute("message","votre mot de passe doit etre au moin 1 caractere");
+            return "login";
         }
         
         User user = new User(courriel,password);
